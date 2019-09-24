@@ -1,0 +1,106 @@
+\RequirePackage{currfile} 
+
+\documentclass{beamer}
+
+\usepackage{datetime}
+
+% \usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+% \usepackage{amsfonts}
+% \usepackage{amssymb}
+% \usepackage{datetime}
+% \usepackage{float}
+% \usepackage{graphicx}
+\usepackage{url}
+\usepackage[separate-uncertainty=true]{siunitx}
+\usepackage{xcolor}
+
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+% \usepgfplotslibrary{groupplots}
+
+\usepackage{booktabs} % for tables
+
+\pgfplotsset{compat=newest}
+
+% \usepackage[labelfont=bf,textfont=md, font=footnotesize]{caption}
+
+% \usepackage[left=3.00cm, right=3.00cm, top=3.50cm, bottom=3.50cm]{geometry}
+
+
+\usetheme{Boadilla}
+
+\title[Parameter estimation]{Parameter estimation for the oscillating systems}
+
+\author[Ashot Matevosyan, Aram Matevosyan]{
+    Ashot Matevosyan\textsuperscript{1}, Aram Matevosyan\textsuperscript{2}
+}
+\institute[]{University of Cambridge\textsuperscript{1}, Yerevan State University\textsuperscript{2}}
+
+\date[]{
+Experiment performed \dayofweekname{18}{01}{2019} 18\textsuperscript{th} Januarty 2019
+\newline
+\newline
+\today
+}
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\section{Apparatus and Methods}
+
+
+\begin{frame}{Experiment details}
+\framesubtitle{Apparatus}
+\begin{figure}[t]
+	\centering
+	\includegraphics[width=0.7\linewidth]{images/pendulum_diagram.png}
+	\caption{The diagram of the oscillating system in our experiment.}
+	\label{fig:system-diagram}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Experiment details}
+% \framesubtitle{Aparatus}
+\begin{columns}
+\column{0.6\textwidth}
+\begin{itemize}
+    \item<1-> Measure Amplitude by the ruler around the pendulum
+    \item<2-> Measure period of oscillation by timer
+    \item<3-> Measure and adjust frequency of the \textbf{driving force}
+    \item<4-> Adjust \textbf{dumping force} by Eddy brake current
+\end{itemize}
+\column{0.4\textwidth}
+\begin{figure}[t]
+	\centering
+	\includegraphics[width=1\linewidth]{images/pendulum_diagram.png}
+	\label{fig:system-diagram}
+\end{figure}
+\end{columns}
+\end{frame}
+
+\section{Theoretical background}
+\input{slides/plots.dumped.tex}
+
+\begin{frame}{Quality factor}
+\begin{definition}
+    	\textit{Quality factor} is a dimensionless parameter that describes how underdamped the oscillator is, how well it oscillates. Quality factor Q is defined as
+	\begin{equation}\label{eq:q-factor}
+	Q=\cfrac{\omega_0}{2\gamma}
+	\end{equation}
+\end{definition}
+
+\bigskip
+For a \textit{good} oscillators $Q \gg 1$. 
+\end{frame}
+
+\input{slides/plots.forced.tex}
+\input{slides/amplitude.tex}
+\input{slides/resonance_curve.tex}
+\input{slides/bayes.tex}
+\input{slides/statanalysis.tex}
+
+\end{document}

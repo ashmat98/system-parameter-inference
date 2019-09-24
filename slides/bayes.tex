@@ -1,0 +1,131 @@
+\begin{frame}{Mean and std estimation}
+\framesubtitle{Problem setup}
+
+
+\begin{problem}
+Given i.i.d. samples from \textit{Normal distribution}:
+\begin{equation*}
+x_i \overset{\text{iid}}{\sim} \mathcal{N}(\,\, \cdot \,\, | \, \mu, \sigma^2) \text{\quad  for i=1,2,3 ..., N}
+\end{equation*}
+Suppose $\sigma$ is known. Find estimation for $\mu$.
+\end{problem}
+\pause
+\begin{solution}
+\begin{equation*}
+    \hat{\mu} = \frac{1}{N} \sum_{i=0}^N{x_i} \quad \text{(Sample mean)}
+\end{equation*}
+\end{solution}
+\pause
+\textbf{This solution does not satisfy!}
+
+Sometimes we need to know \textbf{uncertainty} in our measurements.
+How much confident are we in out estimation?
+\end{frame}
+
+\begin{frame}{Bayesian Inference}
+\framesubtitle{Introduction}
+\begin{theorem}[Bayes' Theorem]
+\begin{equation*}
+P(A \mid B) = \frac{P(B \mid A) \, P(A)}{P(B)}
+\end{equation*}
+\end{theorem}
+\pause
+\begin{example}
+We are given \textbf{Data}, we want to find \textbf{distribution over parameters}:
+\begin{equation*}
+    P( Parametes \mid Data ) = \frac{P( Data \mid Parameters ) \, P(Parameters)}{P(Data)}
+\end{equation*}
+\end{example}
+\pause
+\begin{description}[leftmargin=1cm, labelwidth=3cm]
+\item[$P(Parameters)$] Prior
+\item[$P( Parametes \mid Data ) $] Posterior
+\item[$P( Data \mid Parameters )$] Likelihood
+\item[$P(Data)$] Marginal
+\end{description}
+\end{frame}
+
+\begin{frame}{Bayesian Inference}
+\framesubtitle{Introduction}
+\begin{theorem}[Bayes' Theorem]
+\begin{equation*}
+P(A \mid B) = \frac{P(B \mid A) \, P(A)}{P(B)}
+\end{equation*}
+\end{theorem}
+
+\begin{example}
+We are given \textbf{Data}, we want to find \textbf{distribution over parameters}:
+\begin{equation*}
+    P( \mu \mid \{x_i\} ) = \frac{P( \{x_i\} \mid \mu ) \, P(\mu)}{P(\{x_i\})}
+\end{equation*}
+\end{example}
+
+\begin{description}[leftmargin=1cm, labelwidth=3cm]
+\item[$P(\mu)$] Prior
+\item[$P( \mu \mid \{x_i\} ) $] Posterior
+\item[$P( \{x_i\} \mid \mu )$] Likelihood
+\item[$P(\{x_i\})$] Marginal
+\end{description}
+\end{frame}
+
+
+
+
+\begin{frame}{Modeling The Problem}
+\framesubtitle{Likelihood}
+Likelihood for each sample is
+\begin{equation*}
+    p\left(x_{i} \mid \mu\right)=\left(2 \pi \sigma^{2}\right)^{-1 / 2} \exp \left(-\frac{1}{2} \frac{\left(x_{i}-\mu\right)^{2}}{\sigma^{2}}\right)
+\end{equation*}
+\pause
+and as samples are i.i.d., the \textit{Likelihood of the Data} is
+\pause
+\begin{equation*}
+    p(x \mid \mu)=\prod_{i=1}^{n} p\left(x_{i} \mid \mu\right)=\left(2 \pi \sigma^{2}\right)^{-n / 2} \exp \left(-\frac{1}{2 \sigma^{2}} \sum_{i=1}^{n}\left(x_{i}-\mu\right)^{2}\right)
+\end{equation*}
+    
+\end{frame}
+
+\begin{frame}{Modeling The Problem}
+\framesubtitle{Prior and Marginal}
+\textbf{Prior} (belief) for $\mu$ we take
+\begin{equation*}
+    p(\mu)=\mathcal{N}\left(\mu | \mu_{0}, \sigma_{0}^{2}\right)
+\end{equation*}
+\pause
+And so, \textbf{Marginal} will be
+\begin{equation*}
+    p(x) = \int_{-\infty}^{\infty}p(x \mid \mu) p(\mu) d\mu    
+\end{equation*}
+\pause
+Note that this is the hardest part of the model. Sometimes his integral could be intractable. \\
+Also note that this is normalisation constant and
+\begin{equation*}
+    p(\mu \mid x) \sim p(x \mid \mu) p(\mu)
+\end{equation*}
+\end{frame}
+
+\begin{frame}{Sample Mean estimation}
+\begin{problem}
+\begin{equation*}
+x_i \overset{\text{iid}}{\sim} \mathcal{N}(\,\, \cdot \,\, | \, \mu, \sigma^2) \text{\quad  for i=1,2,3...,N}. \text{ Find estimation for }\mu.
+\end{equation*}
+\end{problem}
+\pause
+\begin{solution}[Maximum likelihood]
+\begin{equation*}
+    \hat{\mu}_{\mathrm{ML}} = \frac{1}{N} \sum_{i=0}^N{x_i} \quad \text{(Sample mean)}
+\end{equation*}
+\end{solution}
+\pause
+
+\begin{solution}[Bayesian  inference~\footnotemark ]
+\begin{gather*}
+p(\mu \mid x)=\mathcal{N}\left(\mu \mid \mu_{N}, \sigma_{N}^{2}\right) \\
+\text{ where } \quad  \mu_{N} =\frac{\sigma^{2}}{N \, \sigma_{0}^{2}+\sigma^{2}} \mu_{0}+\frac{N \, \sigma_{0}^{2}}{N \, \sigma_{0}^{2}+\sigma^{2}} \mu_{\mathrm{ML}} \ \text{ and } \  \frac{1}{\sigma_{N}^{2}} =\frac{1}{\sigma_{0}^{2}}+\frac{N}{\sigma^{2}} 
+\end{gather*}
+\end{solution}
+
+\alt<2>{\let\thefootnote\relax\footnotetext{~}}{\footnotetext{Christopher M. Bishop, \textit{Pattern Recognition and Machine Learning}, Chapter 2.3.6}}
+
+\end{frame}

@@ -1,0 +1,105 @@
+\begin{frame}{Measurement of the Amplitude}
+\begin{align*}
+\onslide<1->{&\theta = \theta_0 \, e^{-\gamma t} \cos(\omega_1 t) \\}
+\onslide<2->{\Rightarrow \; &a_n = a_0 \, e^{-n \gamma T} \text{  were  } T=\cfrac{2 \pi}{\omega_1} \\}
+\onslide<3>{\Rightarrow \; &\ln(a_n) = ln(a_0) - n \gamma T }
+\end{align*}
+\end{frame}
+
+
+\begin{frame}{Measurement of the Amplitude}
+\framesubtitle{results}
+\begin{figure}[ht]
+	\centering	
+	\begin{tikzpicture}
+	\begin{axis}[
+	legend pos=south east,
+	width=0.9\linewidth,
+	height=6cm,
+	title={$ln(\text{amplitude})$ plotted as a function of the number of oscillations},
+	xlabel={Number of oscillations, n},
+	ylabel={$ln(\text{amplitude a\textsubscript{n} / arbitrary units})$ },
+	xmajorgrids=true,ymajorgrids=true,
+	grid style=dashed,
+	]
+	
+	\addplot[
+	color=blue,	only marks, mark=+,
+	mark options={solid,scale=2,line width=0.5pt},
+	error bars/.cd,
+	y dir=both, y explicit,
+	error bar style={line width=0.5pt,solid},
+	error mark options={line width=0.7pt,mark size=3pt,rotate=90}
+	]		
+	table[x index = {0}, y index = {3}, y error plus index=4, y error minus index=5, col sep=comma]
+	{data/transient_response_0.0A.csv};
+	\addlegendentry{braking current = \SI{0.0}{\ampere}}
+	
+	\addplot [color=black,forget plot]
+	table [col sep=comma, x index=0, 
+	y={create col/linear regression={y=[index]3}}] 
+	{data/transient_response_0.0A.csv};
+	\xdef\slopeOne{\pgfplotstableregressiona}
+	\xdef\interceptOne{\pgfplotstableregressionb}
+	\node[] at (axis cs: 10,1.47){%
+		$\pgfmathprintnumber{\slopeOne} \cdot x
+		\pgfmathprintnumber[print sign]{\interceptOne}$};
+	
+	\addplot[color=orange, only marks, mark=+,
+	mark options={solid,scale=2,line width=0.5pt},
+	error bars/.cd,
+	y dir=both, y explicit,
+	error bar style={line width=0.5pt,solid},
+	error mark options={line width=0.7pt,mark size=3pt,rotate=90}
+	]		
+	table[x index = {0}, y index = {3}, y error plus index=4, y error minus index=5, col sep=comma]
+	{data/transient_response_0.6A.csv};
+	\addlegendentry{braking current = \SI{0.6}{\ampere}}
+	
+	\addplot [color=black]
+	table [col sep=comma, x index=0, 
+	y={create col/linear regression={y=[index]3}}] 
+	{data/transient_response_0.6A.csv};
+	\xdef\slopeTwo{\pgfplotstableregressiona}
+	\xdef\interceptTwo{\pgfplotstableregressionb}
+	\node[] at (axis cs: 6.7,-0.0){%
+		$\pgfmathprintnumber[precision=3]{\slopeTwo} \cdot x
+		\pgfmathprintnumber[print sign]{\interceptTwo}$};
+	
+	\end{axis}
+	\end{tikzpicture}
+	\caption{$\ln(\text{amplitude})$ versus oscillation number $n$. Dependence is linear as we expected.}
+	\label{fig:log-plot}
+	\end{figure}
+
+\end{frame}
+
+\begin{frame}{Results}
+\begin{align*}
+\ln(a_n) = ln(a_0) - n \gamma T \\
+\text{slope of the line} =  -\gamma \, T = -\gamma \cfrac{2 \pi}{\omega_1}
+\end{align*}
+\pause
+
+For low damping $\omega_1 \approx \omega_0$ so the slope is approximately $-\cfrac{\pi}{Q}$.
+\begin{table}\centering
+\begin{tabular}{c c} 
+	\toprule
+	slope [$I_b=0.0A]$ & \num{-0.044 \pm 0.001}\\
+	slope [$I_b=0.6A]$ & \num{-0.80 \pm 0.03} \\
+	\bottomrule
+\end{tabular}
+\end{table}
+\pause
+And by assumption $\text{slope} \approx -\cfrac{\pi}{Q}$
+\begin{table}[H]\centering
+	\begin{tabular}{c c} 
+		\toprule
+		Q [$I_b=0.0A$] & \num{71 \pm 1} \\
+		Q [$I_b=0.6A$] & \num{3.9 \pm 0.1} \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+\end{frame}
+

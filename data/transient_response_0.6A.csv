@@ -1,0 +1,6 @@
+﻿"Number of oscilations n","Amplitude an / arbitrary units",Error in a_n,ln(a_n),positive error in ln(a_n),negative error in ln(a_n),,braking current = 0.6A
+0,10,0.1,2.303,0.010,0.010,,
+1,5,0.1,1.609,0.020,0.020,,
+2,2.4,0.1,0.875,0.041,0.043,,
+3,1,0.1,0.000,0.095,0.105,,
+4,0.4,0.1,-0.916,0.223,0.288,,

@@ -1,0 +1,86 @@
+\begin{frame}{Damped harmonic oscillator}
+Equation of motion:
+\begin{equation} \label{eq:motion-general}
+	\ddot{\theta}+2 \gamma \dot{\theta} + \omega_0^2 \theta = 0
+\end{equation}\begin{description}
+\item[$\gamma$] measure of dumping
+\item[$\omega_0$] natural frequency
+\end{description}
+
+\pause
+Solution:
+\begin{align}
+	\begin{split}
+	 \theta &= \theta_0 \, e^{-\gamma t} \cos(\omega_1 t) \\
+	\text{where} \quad \omega_1 &=\sqrt{\omega_0^2-\gamma^2}
+	\end{split}
+\label{eq:motion-transient}
+\end{align}
+\end{frame}
+
+\begin{frame}{Damped harmonic oscillator}
+\begin{columns}
+\column{0.33\textwidth}
+\begin{figure}
+	\centering
+	\begin{tikzpicture}
+	\begin{axis}[
+	width=\linewidth*1.2,
+	domain=0:4*pi,
+	ymin=-1.5,ymax=1.5,
+	%	axis lines=middle,
+	axis x line=middle,
+	axis y line=left,
+	xtick=\empty,ytick=\empty,
+	x label style={at={(axis description cs:0.5,+0.25)},anchor=north},
+	]
+	\addplot[black, samples=200]{exp(-x*0.3)* cos(deg(x*5))};	\addplot[black, dashed, samples=200]{exp(-x*0.3)};
+	\addplot[black, dashed, samples=200]{-exp(-x*0.3)};
+	\end{axis}
+	\end{tikzpicture}
+	\caption{Underdamped case, which has oscillatory motion.}
+	\label{fig:underdamped}
+\end{figure}
+\column{0.33\textwidth}
+\begin{figure}
+	\begin{tikzpicture}
+	\begin{axis}[
+    width=1.2\linewidth,
+	domain=0:4*pi,
+	ymin=-1.5,ymax=1.5,
+	%	axis lines=middle,
+	axis x line=middle,
+	axis y line=left,
+	xtick=\empty,ytick=\empty,
+	x label style={at={(axis description cs:0.5,+0.25)},anchor=north},
+	]
+	\addplot[black,dashed, samples=200]{exp(-x*2.5)*((2.5+2.37)*exp(+2.37*x) + (2.37-2.5)*exp(-2.37*x))/4.74};
+	\addplot[black, samples=200]{exp(-0.8*x)*(1+0.8*x)};
+	
+	\end{axis}
+	\end{tikzpicture}
+	\caption{\textit{Critically damped} (solid), \textit{overdamped} (dashed) at the same natural frequency.}
+	\label{fig:critical_over}
+\end{figure}
+\column{0.33\textwidth}
+\begin{figure}\begin{tikzpicture}
+		\begin{axis}[
+		width=1.2\linewidth,
+		domain=0:4*pi,
+		ymin=-1.5,ymax=1.5,
+		%	axis lines=middle,
+		axis x line=middle,
+		axis y line=left,
+		x label style={at={(axis description cs:0.5,+0.25)},anchor=north},
+		xtick=\empty,ytick=\empty,
+		]
+		\addplot[black,dashed, samples=200]{exp(-x*0.3)* cos(deg(x*2))};
+		\addplot[black, samples=200]{exp(-0.3*x)*(1+0.3*x)};
+		
+		\end{axis}
+		\end{tikzpicture}
+		\caption{\textit{Critically damped} (dashed), \textit{underdamped} (doted) at the same damping constant.}
+		\label{fig:critical_under}
+\end{figure}
+\end{columns}
+\end{frame}
