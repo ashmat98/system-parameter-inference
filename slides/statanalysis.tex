@@ -25,7 +25,7 @@ For Posterior distribution we have
   \cfrac{\mathcal{P}(X_1...X_n\,|\,\omega_0,\gamma,X_0,\omega_1...\omega_n) \cdot
   	\mathcal{P}(\omega_0,\gamma,X_0)
   }{\textit{margnal}} \\
-\textcolor{green}{\text{i.i.d assumption} \ }&= \cfrac{\prod\limits_{i=1}^{n}\mathcal{P}(X_i\,|\,\omega_0,\gamma,X_0, \omega_i) \cdot
+\textcolor{green}{\text{i.i.d. assumption} \ }&= \cfrac{\prod\limits_{i=1}^{n}\mathcal{P}(X_i\,|\,\omega_0,\gamma,X_0, \omega_i) \cdot
 	\mathcal{P}(\omega_0,\gamma,X_0)
 }{\textit{margnal}}
 \end{split}
@@ -50,7 +50,7 @@ There are different sampling algorithms and frameworks. We have used \textbf{Sta
 Now we sample from our posterior distribution. Our samples are triplets ($\omega_0$, $\gamma$,$X_0$)\textsubscript{$i$}. \\
 \textbf{Sample mean} and \textbf{sample std} for each parameter are \textbf{estimation} and \textbf{uncertainty} for that parameter respectively.
 
-\alt<2>{\let\thefootnote\relax\footnotetext{~}}{\footnotetext{Stan statistical modeling platform \ \href{https://mc-stan.org/}{\url{https://mc-stan.org/}}}}
+\alt<2,3>{\footnotetext{Stan statistical modeling platform \ \href{https://mc-stan.org/}{\url{https://mc-stan.org/}}}} {\let\thefootnote\relax\footnotetext{~}}
 
 \end{frame}
 
@@ -93,7 +93,7 @@ Now we sample from our posterior distribution. Our samples are triplets ($\omega
   		$\omega_0$ / \si{\per\second} & \num{3.10584 \pm 0.00012} & \num{3.1025 \pm 0.0013} \\
   		$\gamma$ / \si{\per\second} & \num{0.09059 \pm 0.00016} & \num{0.3363 \pm 0.0018} \\
   		$X_0 \equiv X(0)$ & \num{0.6675 \pm 0.0010} & \num{0.708 \pm 0.003} \\
-  		$Q^{3th}$ / \si{\per\second} & \num{17.14 \pm 0.03} & \num{4.61 \pm 0.02} \\
+  		$Q^{3rd}$ / \si{\per\second} & \num{17.14 \pm 0.03} & \num{4.61 \pm 0.02} \\
   		\bottomrule
   	\end{tabular}
   	\caption{Resonance frequency and the amplitude at resonance.}
